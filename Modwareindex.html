@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MODWARE</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>🛒 MODWARE</h2>
+
+<div id="products"></div>
+
+<h3>Total: $<span id="total">0</span></h3>
+<button onclick="checkout()">Checkout</button>
+
+<script>
+let products = [
+  { name: "Soap", price: 2.99 },
+  { name: "Detergent", price: 5.99 },
+  { name: "Broom", price: 3.50 }
+];
+
+let total = 0;
+
+function loadProducts() {
+  let box = document.getElementById("products");
+  box.innerHTML = "";
+
+  products.forEach(p => {
+    box.innerHTML += `
+      <div class="product">
+        <h4>${p.name}</h4>
+        <p>$${p.price}</p>
+        <button onclick="add(${p.price})">Add to Cart</button>
+      </div>
+    `;
+  });
+}
+
+function add(price) {
+  total += price;
+  document.getElementById("total").innerText = total.toFixed(2);
+}
+
+function checkout() {
+  alert("✅ Order placed successfully!");
+  total = 0;
+  document.getElementById("total").innerText = 0;
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
